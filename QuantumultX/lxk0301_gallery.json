@@ -67,5 +67,7 @@
     {"config":"33 0,6-23/2 * * * https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/jd_zoo.js, tag=618动物联萌, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true", "addons":"https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/QuantumultX/lxk0301_cookies.conf"},
     {"config":"0-59/30 * * * * https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/jd_zooCollect.js, tag=618动物联萌收集金币, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true", "addons":"https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/QuantumultX/lxk0301_cookies.conf"},
     {"config":"15 17 * * * https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/backUp/xmSports.js, tag=小米运动, img-url=https://raw.githubusercontent.com/58xinian/icon/master/xmyd.png, enabled=true", "addons":"https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/QuantumultX/lxk0301_cookies.conf"}
+    {"config":"30 10 * * * https://ghproxy.com/https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_try.js, tag=京东试用(取关200个店铺再用), img-url=https://ghproxy.com/https://raw.githubusercontent.com/ZCY01/img/master/jdtryv1.png, enabled=true", "addons":"https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/QuantumultX/lxk0301_cookies.conf"}
+  ]
   ]
 }
