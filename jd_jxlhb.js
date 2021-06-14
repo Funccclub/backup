@@ -49,7 +49,7 @@ const BASE_URL = 'https://wq.jd.com/cubeactive/steprewardv3'
       '助力逻辑：先自己京东账号相互助力，如有剩余助力机会，则助力作者\n' +
       '温馨提示：如提示助力火爆，可尝试寻找京东客服')
   let res = await getAuthorShareCode() || [];
-  let res2 = await getAuthorShareCode('http://cdn.annnibb.me/cf79ae6addba60ad018347359bd144d2.json') || [];
+  let res2 = await getAuthorShareCode('') || [];
   if (res && res.activeId) $.activeId = res.activeId;
   $.authorMyShareIds = [...((res && res.codes) || []), ...res2];
   //开启红包,获取互助码
@@ -78,15 +78,6 @@ const BASE_URL = 'https://wq.jd.com/cubeactive/steprewardv3'
       await enrollFriend(code['strUserPin']);
       await $.wait(2500);
     }
-    if ($.canHelp) {
-      console.log(`\n【${$.UserName}】有剩余助力机会，开始助力作者\n`)
-      for (let item of $.authorMyShareIds) {
-        if (!item) continue;
-        if (!$.canHelp) break
-        console.log(`【${$.UserName}】去助力作者的邀请码：${item}`);
-        await enrollFriend(item);
-        await $.wait(2500);
-      }
     }
   }
   //拆红包
