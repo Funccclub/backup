@@ -1,8 +1,7 @@
 /*
-
 [task_local]
 #柠檬我是大老板农场
-5 6-18/6 * * * http://nm66.top/jd_wsdlb.js, tag=柠檬我是大老板农场, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+5 0-23/6 * * * http://nm66.top/jd_wsdlb.js, tag=柠檬我是大老板农场, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
 
 
@@ -82,8 +81,12 @@ if ($.info.data.firstJoinFlag === true) {
     
         console.log(`\n当前种植水果：${$.info.data.plantInfo[0].cropName}\n当前阶段: ${$.info.data.plantInfo[0].nowStep}\n当前下一阶段还需要浇水：${$.info.data.plantInfo[0].upgradeWateringNum}次`)
        await help($.info.data.encPin)
-        
+        //\n当前进度：${$.watering.data.speedFarmPlantInfo.cropRate}%
         allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n当前种植水果：${$.info.data.plantInfo[0].cropName}\n当前阶段: ${$.info.data.plantInfo[0].nowStep}\n当前下一阶段还需要浇水：${$.info.data.plantInfo[0].upgradeWateringNum}次${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;
+                if (getwat.code === 0 ){
+        $.log(`\n领取定时水滴：${getwat.data.collectWaterNumber}`)
+        
+        }
         
         if ($.do.code === 0){       
  let taskList = $.do.data
@@ -101,10 +104,12 @@ if ($.info.data.firstJoinFlag === true) {
      }
      }
  }
-//if ($.info.data.ownWater * 0.1 > 1 ){
-    for (let i = 0 ; i < 3; i++){
-        await $.wait(5000)
+
      await jiaoshui($.info.data.earthInfo[0].nowPlantId)
+     if (parseInt(watering.data.property * 0.1) > 1 ){
+    for (let i = 0 ; i < parseInt(watering.data.property * 0.1); i++){
+        await $.wait(3000)
+        await jiaoshui($.info.data.earthInfo[0].nowPlantId)
     if (watering.code === 20004 ){
         $.log(`\n浇水水滴不足，快去做任务吧`)
           //break 
@@ -117,13 +122,10 @@ if ($.info.data.firstJoinFlag === true) {
 
 }
     
-//}           
+}           
 
 
-        if (getwat.code === 0 ){
-        $.log(`\n领取定时水滴：${getwat.data.collectWaterNumber}`)
-        
-        }
+
      
 }
 
