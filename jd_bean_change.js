@@ -44,7 +44,6 @@ if ($.isNode()) {
       $.expenseBean = 0;
       $.allincomeBean = 0;
       $.allexpenseBean = 0;
-      $.todayIncomeBean = 0;
       $.errorMsg = '';
       $.isLogin = true;
       $.nickName = '';
