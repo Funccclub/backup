@@ -96,9 +96,6 @@ async function jdSuperMarket() {
     await smtgHome();
     await receiveUserUpgradeBlue();
     await Home();
-    if (helpAu === true) {
-      await helpAuthor();
-    }
   } catch (e) {
     $.logErr(e)
   }
@@ -307,8 +304,6 @@ async function businessCircleActivity() {
     if (joinStatus === 0) {
       if (joinPkTeam === 'true') {
         console.log(`\n注：PK会在每天的七点自动随机加入LXK9301创建的队伍\n`)
-        await updatePkActivityIdCDN('https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_updateTeam.json');
-        console.log(`\nupdatePkActivityId[pkActivityId]:::${$.updatePkActivityIdRes && $.updatePkActivityIdRes.pkActivityId}`);
         console.log(`\n京东服务器返回的[pkActivityId] ${pkActivityId}`);
         if ($.updatePkActivityIdRes && ($.updatePkActivityIdRes.pkActivityId === pkActivityId)) {
           await getTeam();
