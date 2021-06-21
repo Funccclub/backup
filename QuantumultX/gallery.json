@@ -1,5 +1,5 @@
 {
  "name": "yuannian1112",
  "description": "怨念yyds",
- "task": [    {"config":"2 0-23/4 * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/jd_cash.js, tag=签到领现金, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true", "addons":"https://raw.githubusercontent.com/yuannian1112/jd_scripts/master/QuantumultX/lxk0301_cookies.conf"},  ]
+ "task": [    {"config":"2 0-23/4 * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_cash.js, tag=签到领现金, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true", "addons":"https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/QuantumultX/lxk0301_cookies.conf"},  ]
 }
