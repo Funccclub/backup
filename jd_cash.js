@@ -8,17 +8,14 @@
 ============Quantumultx===============
 [task_local]
 #签到领现金
-2 0-23/4 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js, tag=签到领现金, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
-
+2 0-23/4 * * * jd_cash.js, tag=签到领现金, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 ================Loon==============
 [Script]
-cron "2 0-23/4 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js,tag=签到领现金
-
+cron "2 0-23/4 * * *" script-path=jd_cash.js,tag=签到领现金
 ===============Surge=================
-签到领现金 = type=cron,cronexp="2 0-23/4 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js
-
+签到领现金 = type=cron,cronexp="2 0-23/4 * * *",wake-system=1,timeout=3600,script-path=jd_cash.js
 ============小火箭=========
-签到领现金 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js, cronexpr="2 0-23/4 * * *", timeout=3600, enable=true
+签到领现金 = type=cron,script-path=jd_cash.js, cronexpr="2 0-23/4 * * *", timeout=3600, enable=true
  */
 const $ = new Env('签到领现金');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -27,9 +24,9 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
-let helpAuthor = false;
+let helpAuthor = true;
 const randomCount = $.isNode() ? 5 : 5;
-let cash_exchange = true;//是否消耗2元红包兑换200京豆，默认否
+let cash_exchange = false;//是否消耗2元红包兑换200京豆，默认否
 const inviteCodes = ['']
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -346,11 +343,6 @@ function showMsg() {
     resolve()
   })
 }
-
-    await $.wait(10000);
-    resolve()
-  })
-}
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
@@ -371,7 +363,7 @@ function readShareCode() {
         resolve(data);
       }
     })
-        await $.wait(10000);
+    await $.wait(10000);
     resolve()
   })
 }
@@ -461,7 +453,7 @@ function taskUrl(functionId, body = {}) {
   }
 }
 
-function getAuthorShareCode(url = "") {
+function getAuthorShareCode(url) {
   return new Promise(resolve => {
     $.get({url, headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
@@ -470,7 +462,7 @@ function getAuthorShareCode(url = "") {
       try {
         if (err) {
         } else {
-          $.authorCode = JSON.parse(data)
+          $.authorCode = []
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -480,7 +472,7 @@ function getAuthorShareCode(url = "") {
     })
   })
 }
-function getAuthorShareCode2(url = "") {
+function getAuthorShareCode2(url) {
   return new Promise(resolve => {
     $.get({url, headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
@@ -489,7 +481,7 @@ function getAuthorShareCode2(url = "") {
       try {
         if (err) {
         } else {
-          $.authorCode2 = JSON.parse(data)
+          $.authorCode2 = []
           if ($.authorCode2 && $.authorCode2.length) {
             $.authorCode.push(...$.authorCode2);
           }
