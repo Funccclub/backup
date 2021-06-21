@@ -362,7 +362,7 @@ function readShareCode() {
         } else {
           if (data) {
             console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
-           // data = JSON.parse(data);
+            data = JSON.parse(data);
           }
         }
       } catch (e) {
