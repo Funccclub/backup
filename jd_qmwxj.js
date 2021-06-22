@@ -1,4 +1,7 @@
 /*
+入口 京东 我的 全民挖现金
+运行一次查看邀请码 变量你的邀请码 
+export shareCode="FCD4A7E5CB4AF69377D77E9B4553CF6CAD1DAAB9A3E3F6CBAFDE81EEB7393333"
 [task_local]
 0 10 * * *
 */
@@ -11,6 +14,10 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let allMessage = '';
+let shareCode = '';
+if (process.env.shareCode) {
+  shareCode = process.env.shareCode;
+}
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -45,11 +52,11 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
         }
         continue
       }
-//await list1()
+await list1()
 await info()
 await helpme()
 //await helpme1()
-//await dslq()
+await dslq()
 
     }
   }
@@ -83,11 +90,18 @@ headers: {
 
                     data = JSON.parse(data);
                      if(data.data.bizCode == 0){
-                     let taskList = data.data.result.taskVos 
+                     let taskList = data.data.result.taskVos[0].shoppingActivityVos
                      for (let i = 0 ; i < taskList.length; i++){
-                     taskToken = taskList[i].shoppingActivityVos[i].taskToken
+                     taskToken = taskList[i].taskToken
                      await dotask(taskToken)
                      await task(1)
+                     //await task(2)
+                     }
+                     let taskList1 = data.data.result.taskVos[1].shoppingActivityVos
+                     for (let i = 0 ; i < taskList1.length; i++){
+                     taskToken = taskList1[i].taskToken
+                     await dotask(taskToken)
+                     //await task(1)
                      await task(2)
                      }
 
@@ -109,11 +123,11 @@ function helpme() {
                 let options = {
     url: `https://api.m.jd.com/client.action`,
 
-    body: `functionId=help_activity&body={"shareCode":"FCD4A7E5CB4AF69377D77E9B4553CF6CAD1DAAB9A3E3F6CBAFDE81EEB7393333","name":"","imageUrl":""}&client=wh5&clientVersion=1.0.0&osVersion=10&uuid=7049442d7e415232`,
+    body: `functionId=help_activity&body={"shareCode":"${shareCode}","name":"","imageUrl":""}&client=wh5&clientVersion=1.0.0&osVersion=10&uuid=7049442d7e4152311`,
 headers: {
 "Origin": "https://h5.m.jd.com",
 "Host": "api.m.jd.com",
-        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+        "User-Agent": "jdapp;iPhone;9.5.2;14.3;6898c30638c55142969304c8e2167997fa59eb53;network/wifi;ADID/F108E1B6-8E30-477C-BE54-87CF23435488;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone9,2;addressid/390536540;supportBestPay/0;appBuild/167650;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1",
       "Cookie": "cuid=eidIe2798122d1s4GEix%252FuspRjy92JqJ273YghhIs3JZdi%252F4JjftGCWZOLgY3glC5gGXsTY1vGLRKckMeHq2opKqTBNLiayOHJtx2EhExIqlbarZpTFa;"+cookie,
       }
                 }
@@ -199,12 +213,13 @@ headers: {
         $.post(options, async (err, resp, data) => {
             try {
 
-                    //data = JSON.parse(data);
-                 
-                   
-                   
-                    
- $.log(data)
+                    data = JSON.parse(data);
+                 if(data.ret == 4){
+                    $.log(data.msg)
+                 }else if(data.ret == 5){
+                      $.log(data.msg)
+                 } 
+
 
             } catch (e) {
                 $.logErr(e, resp);
@@ -234,15 +249,15 @@ headers: {
         $.post(options, async (err, resp, data) => {
             try {
 
-                    //data = JSON.parse(data);
+                    data = JSON.parse(data);
                  
-                   $.log(data)
+                   //$.log(data)
                    
-                    //if(data.code == 0){
- //$.log(`\n下一次领取时间：${data.data.nextTime}`+"\n领取定时奖励："+data.data.reward*0.01)
- //}else if(data.code == 1){
- //   $.log(`\n查询失败 请检查是否正确填写商品变量`)
-//}
+                    if(data.ret == 0){
+ $.log(`\n下一次领取时间：${data.data.nextTime}`+"\n领取定时奖励："+data.data.reward*0.01)
+ }else if(data.ret == 4){
+    $.log(data.msg)
+}
             } catch (e) {
                 $.logErr(e, resp);
             } finally {
