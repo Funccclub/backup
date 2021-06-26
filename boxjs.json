@@ -1,9 +1,10 @@
+
 {
-  "id": "lxk0301.app.sub",
-  "name": "lxk0301脚本订阅",
-  "author": "@lxk0301",
+  "id": "app.sub",
+  "name": "脚本订阅",
+  "author": "",
   "icon": "https://avatars0.githubusercontent.com/u/21308593?s=52&v=4",
-  "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master/",
+  "repo": "",
   "apps": [
     {
       "id": "JD_Cookies",
@@ -12,7 +13,6 @@
       "descs_html": [
         "请勿随意在输入框修改内容，建议通过脚本去获取cookie，若要修改，请按照JSON 格式修改（<a href=\"https://www.bejson.com/json/format\">可使用此JSON校验</a> ，或点击右上角按钮🔘进行校验(如有弹窗提示则为异常JSON)）。",
         "示例：[{\"userName\":\"jd_xxx\",\"cookie\":\"pt_key=AAJ;pt_pin=jd_xxx;\"},{\"userName\":\"jd_66\",\"cookie\":\"pt_key=AAJ;pt_pin=jd_66;\"}]",
-        "脚本地址【<a href=\"https://gitee.com/lxk0301/jd_scripts/raw/master/JD_extra_cookie.js\">京东多 CK获取</a>】,并按照此脚本注释进行配置",
         "使用方式【<a href=\"https://home.m.jd.com/myJd/newhome.action\">个人中心</a>】获取对应的数据Code",
         "注：如与NobyDa的京东cookie重复，建议在此处删除重复的cookie"
       ],
@@ -31,9 +31,9 @@
         "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/jd.png",
         "https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png"
       ],
-      "author": "@dompling",
+      "author": "",
       "repo": "https://github.com/dompling/Script",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy_feedPets.js"
+      "script": ""
     },
     {
       "id": "JD_UA",
@@ -54,8 +54,8 @@
           "desc": "不懂不知不会UserAgent的请不要随意填写内容，如需填写使用建议使用京东APP的UserAgent"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
+      "author": "",
+      "repo": "",
       "icons": [
         "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/jd.png",
         "https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png"
@@ -80,8 +80,8 @@
           "desc": "不懂不知不会UserAgent的请不要随意填写内容，如需填写使用建议使用京东APP的UserAgent"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
+      "author": "",
+      "repo": "",
       "icons": [
         "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/jd.png",
         "https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png"
@@ -122,9 +122,9 @@
           "desc": "好友邀请码,同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_fruit.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jdnc_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jdnc.png"
@@ -158,9 +158,9 @@
           "desc": "好友邀请码,同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_pet.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jdmc_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jdmc.png"
@@ -194,9 +194,9 @@
           "desc": "好友邀请码,同一个京东账号的好友邀请码用@隔开,不同京东账号互助码用换行(return按键)隔开"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_plantBean.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jdzd_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jdzd.png"
@@ -251,9 +251,9 @@
           ]
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jdcww_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jdcww.png"
@@ -297,9 +297,9 @@
           ]
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy_reward.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jdcww_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jdcww.png"
@@ -350,14 +350,14 @@
         {
           "id": "jd_joy_invite_pin",
           "name": "账号一邀请助力friendPin名单",
-          "val": "jd_6cd93e613b0e5,被折叠的记忆33",
+          "val": "",
           "type": "text",
           "desc": "多个账号使用英文逗号','隔开,最多3个"
         },
         {
           "id": "jd_joy_run_pin",
           "name": "账号一赛跑助力friendPin名单",
-          "val": "jd_6cd93e613b0e5,被折叠的记忆33",
+          "val": "",
           "type": "text",
           "desc": "多个账号使用英文逗号','隔开,最多6个"
         },
@@ -383,9 +383,9 @@
           "desc": "多个账号使用英文逗号','隔开,最多6个"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy_run.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jdcww_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jdcww.png"
@@ -411,9 +411,9 @@
           "desc": "是否卖出金果获得金币,金币具有有效期，默认卖出"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_moneyTree.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jdyqs_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jdyqs.png"
@@ -432,9 +432,9 @@
           "desc": "运行京东天天加速脚本时不发出系统弹窗通知"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_speed.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jdjs_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jdjs.png"
@@ -484,9 +484,9 @@
           "desc": "匹配到此处店铺后面(包括此店铺)的不再进行取关(此处内容请尽量从头开始输入店铺名称)"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_unsubscribe.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/jd.png",
         "https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png"
@@ -519,12 +519,12 @@
           "desc": "运行脚本消耗金币进行抽奖，默认抽奖"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
+      "author": "",
+      "repo": "",
       "scripts":[
         {
           "name" : "东东超市",
-          "script" : "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_superMarket.js"
+          "script" : ""
         }
       ],
       "icons": [
@@ -555,12 +555,12 @@
           "desc": "输入兑换奖品名称(默认不兑换奖品)"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
+      "author": "",
+      "repo": "",
       "scripts": [
         {
           "name" : "东东超市兑换奖品",
-          "script" : "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_blueCoin.js"
+          "script" : ""
         }
       ],
       "icons": [
@@ -599,9 +599,9 @@
           "desc": "需要修改最小的运动步数的数字,例如:25000"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/backUp/xmSports.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/xmyd_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/xmyd.png"
@@ -622,9 +622,9 @@
           "desc": "请尽量填写完整和别的商品有区分度"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdfactory.js",
+      "author": "",
+      "repo": "",
+      "script": "",
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jd_factory_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jd_factory.png"
@@ -662,9 +662,9 @@
         "https://raw.githubusercontent.com/58xinian/icon/master/jdgc_mini.png",
         "https://github.com/58xinian/icon/raw/master/jdgc.png"
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_dreamFactory.js"
+      "author": "",
+      "repo": "",
+      "script": ""
     },
     {
       "id": "jd_jxCFD_invites",
@@ -691,9 +691,9 @@
         "https://raw.githubusercontent.com/58xinian/icon/master/jxcfd_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png"
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cfd.js"
+      "author": "",
+      "repo": "",
+      "script": ""
     },
     {
       "id": "jd_cash",
@@ -727,9 +727,9 @@
         "https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/jd.png",
         "https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png"
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
-      "script": "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cash.js"
+      "author": "",
+      "repo": "",
+      "script": ""
     },
     {
       "id": "jd_jxd",
@@ -744,17 +744,46 @@
           "desc": "自动把抽奖卷兑换为兑币,默认关闭"
         }
       ],
-      "author": "@lxk0301",
-      "repo": "https://gitee.com/lxk0301/jd_scripts/tree/master",
+      "author": "",
+      "repo": "",
       "scripts":[
         {
           "name" : "京小兑",
-          "script" : "https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxd.js"
+          "script" : ""
         }
       ],
       "icons": [
         "https://raw.githubusercontent.com/58xinian/icon/master/jd_jxd_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jd_jxd.png"
+      ]
+    },
+    {
+      "id": "jd_EsportsManager",
+      "name": "东东电竞经理",
+      "keys": [
+        "jd_EsportsManager_Bearer"
+      ],
+      "descs_html": [
+        "请在输入框输入东东电竞Bearer"
+      ],
+      "settings": [
+        {
+          "id": "jd_EsportsManager_Bearer",
+          "name": "东东电竞Bearer",
+          "val": "",
+          "placeholder": "Bearer XXX",
+          "type": "textarea",
+          "autoGrow": true,
+          "rows": 8,
+          "desc": "使用东东电竞CK脚本会自动填写"
+        }
+      ],
+      "author": "",
+      "repo": "",
+      "script": "",
+      "icons": [
+        "https://raw.githubusercontent.com/JDHelloWorld/jd_scripts_demo/main/jd_EsportsManager.png",
+        "https://raw.githubusercontent.com/JDHelloWorld/jd_scripts_demo/main/jd_EsportsManager.png"
       ]
     }
   ]
