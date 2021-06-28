@@ -2,6 +2,7 @@
 星系牧场
 活动入口：QQ星儿童牛奶京东自营旗舰店->星系牧场
 每次都要手动打开才能跑 不知道啥问题
+号1默认给我助力,后续接龙 2给1 3给2
  19.0复制整段话 http:/J7ldD7ToqMhRJI星系牧场养牛牛，可获得DHA专属奶！%VAjYb8me2b!→去猄倲←
  
 https://lzdz-isv.isvjcloud.com/dingzhi/qqxing/pasture/activity?activityId=90121061401&lng=107.146935&lat=33.255252&sid=cad74d1c843bd47422ae20cadf6fe5aw&un_area=8_573_6627_52446
@@ -18,7 +19,7 @@ const randomCount = $.isNode() ? 20 : 5;
 const notify = $.isNode() ? require('./sendNotify') : '';
 let merge = {}
 let codeList = []
-
+Exchange = $.isNode() ? (process.env.Cowexchange ? process.env.Cowexchange : false) : ($.getdata("Cowexchange") ? $.getdata("Cowexchange") : false);
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
     cookie = '';
@@ -51,14 +52,15 @@ $.shareuuid = "8cec00a4917e4af6ae49f8f4f9e7b58d"
                 $.openCard = true
                 $.isLogin = true;
                 $.needhelp = true
+                $.foodNum = 0
                 $.nickName = '';
                 $.drawresult = ""
+                $.exchange =0
                 console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
                 if (!$.isLogin) {
                     $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {
                         "open-url": "https://bean.m.jd.com/bean/signIndex.action"
                     });
-
                     if ($.isNode()) {
                         await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
                     }
@@ -69,9 +71,7 @@ $.shareuuid = "8cec00a4917e4af6ae49f8f4f9e7b58d"
                 await getToken2()
                 await getshopid()
                 await getMyPin()
-                await $.wait(1000)
                 await adlog()
-                await $.wait(1000)
                 await getUserInfo()
                 if ($.cando) {
                     await getUid($.shareuuid)
@@ -83,6 +83,7 @@ $.shareuuid = "8cec00a4917e4af6ae49f8f4f9e7b58d"
                         if (task.taskid == "interact") {
                             for (l = 0; l < 20 - task.curNum; l++) {
                                 await dotask(task.taskid, task.params)
+                                await $.wait(500)
                             }
                         } else if (task.taskid == "scansku") {
                             await getproduct()
@@ -90,13 +91,21 @@ $.shareuuid = "8cec00a4917e4af6ae49f8f4f9e7b58d"
                             await dotask(task.taskid, $.pparam)
                         } else {
                             await dotask(task.taskid, task.params)
+                            await $.wait(500)
                         }
                     }
                     await getinfo()
                     for (k = 0; k < $.drawchance; k++) {
                         await draw()
                     }
-                    message += `【京东账号${$.index}】${$.nickName || $.UserName}\n${$.cow} ${$.drawresult}\n`
+                    let exchanges =Math.floor($.foodNum/1000)
+                    console.log(`可兑换 ${exchanges} 次 20京🐶`)
+                    for(q = 0;q<exchanges && Exchange;q++){
+                    await exchange(13)   
+                    }
+                    await getinfo()
+                    if(!Exchange){console.log("你 默认 不兑换东西,请自行进去活动兑换")}
+                    message += `【京东账号${$.index}】${$.nickName || $.UserName}\n${$.cow} 兑换京🐶 ${$.exchange}  ${$.drawresult}\n`
                 } else {
                   $.msg($.name, "", "跑不起来了~请自己进去一次牧场")
                 }
@@ -241,7 +250,7 @@ function getshopid() {
 
 //获取我的pin
 function getMyPin() {
-    let config = taskPostUrl("/customer/getMyPing", `userId=${$.shopid}&token=${$.token2}&fromType=APP`)
+    let config = taskPostUrl("/customer/getMyPing", `userId=${$.shopid}&token=${encodeURIComponent($.token2)}&fromType=APP`)
     //   console.log(config)
     return new Promise(resolve => {
         $.post(config, async (err, resp, data) => {
@@ -269,7 +278,7 @@ function getMyPin() {
 }
 
 function adlog() {
-    let config = taskPostUrl("/common/accessLogWithAD", `venderId=1000361242&code=99&pin=${$.pin}&activityId=90121061401&pageUrl=https%3A%2F%2Flzdz-isv.isvjcloud.com%2Fdingzhi%2Fqqxing%2Fpasture%2Factivity%3FactivityId%3D90121061401%26lng%3D107.146945%26lat%3D33.255267%26sid%3Dcad74d1c843bd47422ae20cadf6fe5aw%26un_area%3D27_2442_2444_31912&subType=app&adSource=`)
+    let config = taskPostUrl("/common/accessLogWithAD", `venderId=1000361242&code=99&pin=${encodeURIComponent($.pin)}&activityId=90121061401&pageUrl=https%3A%2F%2Flzdz-isv.isvjcloud.com%2Fdingzhi%2Fqqxing%2Fpasture%2Factivity%3FactivityId%3D90121061401%26lng%3D107.146945%26lat%3D33.255267%26sid%3Dcad74d1c843bd47422ae20cadf6fe5aw%26un_area%3D27_2442_2444_31912&subType=app&adSource=`)
     //   console.log(config)
     return new Promise(resolve => {
         $.post(config, async (err, resp, data) => {
@@ -303,7 +312,7 @@ function adlog() {
 // 获得用户信息  
 function getUserInfo() {
     return new Promise(resolve => {
-        let body = `pin=${$.pin}`
+        let body = `pin=${encodeURIComponent($.pin)}`
         let config = taskPostUrl('/wxActionCommon/getUserInfo', body)
         //   console.log(config)
         $.post(config, async (err, resp, data) => {
@@ -357,7 +366,7 @@ function getUid() {
 
 //获取任务列表
 function getinfo() {
-    let config = taskPostUrl("/dingzhi/qqxing/pasture/myInfo", `activityId=90121061401&pin=${$.pin}&pinImg=${$.pinImg}&nick=${$.nick}&cjyxPin=&cjhyPin=&shareUuid=${$.shareuuid}`)
+    let config = taskPostUrl("/dingzhi/qqxing/pasture/myInfo", `activityId=90121061401&pin=${encodeURIComponent($.pin)}&pinImg=${$.pinImg}&nick=${$.nick}&cjyxPin=&cjhyPin=&shareUuid=${$.shareuuid}`)
     return new Promise(resolve => {
         $.post(config, async (err, resp, data) => {
             try {
@@ -382,6 +391,7 @@ function getinfo() {
                             }
                         }
                         $.cow = `当前🐮🐮成长值：${$.score}  饲料：${$.food.totalNum-$.food.useNum}  抽奖次数：${$.draw.totalNum-$.draw.useNum}  签到天数：${$.sign.totalNum}`
+                        $.foodNum = $.food.totalNum-$.food.useNum
                         console.log($.cow)
                         $.drawchance = $.draw.totalNum - $.draw.useNum
                     } else {
@@ -449,9 +459,35 @@ function writePersonInfo(vid) {
         })
     })
 }
+//兑换商品
+function exchange(id) {
+    return new Promise(resolve => {
+        let body = `pid=${id}&activityId=90121061401&pin=${encodeURIComponent($.pin)}&actorUuid=&userUuid=`
+        $.post(taskPostUrl('/dingzhi/qqxing/pasture/exchange?_', body), async (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log(`${$.name} API请求失败，请检查网路重试`)
+                } else {
+                    data = JSON.parse(data);
+                 //   console.log()
+if(data.result){
+console.log(`兑换 ${data.data.rewardName}成功`)
+$.exchange += 20
+}else{
+console.log(JSON.stringify(data))
+}
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+            } finally {
+                resolve(data);
+            }
+        })
+    })
+}
 
 function dotask(taskId, params) {
-    let config = taskPostUrl("/dingzhi/qqxing/pasture/doTask", `taskId=${taskId}&${params?("param="+params+"&"):""}activityId=90121061401&pin=${$.pin}&actorUuid=${$.uuid}&userUuid=${$.shareuuid}`)
+    let config = taskPostUrl("/dingzhi/qqxing/pasture/doTask", `taskId=${taskId}&${params?("param="+params+"&"):""}activityId=90121061401&pin=${encodeURIComponent($.pin)}&actorUuid=${$.uuid}&userUuid=${$.shareuuid}`)
     //     console.log(config)
     return new Promise(resolve => {
         $.post(config, async (err, resp, data) => {
@@ -480,7 +516,7 @@ function dotask(taskId, params) {
 }
 
 function draw() {
-    let config = taskPostUrl("/dingzhi/qqxing/pasture/luckydraw", `activityId=90121061401&pin=${$.pin}&actorUuid=&userUuid=`)
+    let config = taskPostUrl("/dingzhi/qqxing/pasture/luckydraw", `activityId=90121061401&pin=${encodeURIComponent($.pin)}&actorUuid=&userUuid=`)
     //  console.log(config)
     return new Promise(resolve => {
         $.post(config, async (err, resp, data) => {
