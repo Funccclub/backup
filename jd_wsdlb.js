@@ -2,6 +2,7 @@
 [task_local]
 入口 极速版 赚金币 种水果
 #柠檬我是大老板农场
+export dlbtz="true" //通知打开
 5 0-23/6 * * * http://nm66.top/jd_wsdlb.js, tag=柠檬我是大老板农场, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
 
@@ -14,8 +15,10 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let allMessage = '';
-
-
+let dlbtz = true; //通知开关
+if (process.env.dlbtz) {
+  dlbtz = process.env.dlbtz;
+}
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -77,17 +80,17 @@ async function jdFruit() {
   await apCollectWater()
 if ($.info.data.firstJoinFlag === true) {
  $.log("您忘了种植新的水果，快打开极速版种植吧")
-
- allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n您忘了种植新的水果,内侧入口为：\nhttp://a8pck.cn/VbjDm${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;
+if(dlbtz == true){
+ allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n您忘了种植新的水果,内侧入口为：\nhttp://a8pck.cn/VbjDm${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;}
 }else if ($.info.data.firstJoinFlag === false) {
     
         console.log(`\n当前种植水果：${$.info.data.plantInfo[0].cropName}\n当前阶段: ${$.info.data.plantInfo[0].nowStep}\n当前下一阶段还需要浇水：${$.info.data.plantInfo[0].upgradeWateringNum}次`)
-  if($.info.data.plantInfo[0].nowStep == 4){
+       if($.info.data.plantInfo[0].nowStep == 4){
        allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n当前种植水果可以收取了${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;
        }
   await help($.info.data.encPin)
-        //\n当前进度：${$.watering.data.speedFarmPlantInfo.cropRate}%
-        allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n当前种植水果：${$.info.data.plantInfo[0].cropName}\n当前阶段: ${$.info.data.plantInfo[0].nowStep}\n当前下一阶段还需要浇水：${$.info.data.plantInfo[0].upgradeWateringNum}次${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;
+        if(dlbtz == true){
+        allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n当前种植水果：${$.info.data.plantInfo[0].cropName}\n当前阶段: ${$.info.data.plantInfo[0].nowStep}\n当前下一阶段还需要浇水：${$.info.data.plantInfo[0].upgradeWateringNum}次${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;}
                 if (getwat.code === 0 ){
         $.log(`\n领取定时水滴：${getwat.data.collectWaterNumber}`)
                     
