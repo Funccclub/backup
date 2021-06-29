@@ -108,4 +108,4 @@
 20 */4 * * * node /scripts/jd_jddj_plantBeans.js >> /scripts/logs/jd_jddj_plantBeans.log 2>&1
 0 0,9,21 * * * node /scripts/jd_europeancup.js >> /scripts/logs/jd_europeancup.log 2>&1
 0 0 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
-46 0,1 * * * node /scripts/jd_tw.js >> /scripts/logs/jd_tw.log 2>&1
+46 0,1 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
