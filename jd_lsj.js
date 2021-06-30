@@ -108,7 +108,7 @@ console.log(`您提供了${newShareCodes.length}个账号的${$.name}助力码\n
     $.done();
   })
 async function helpFriends() {
-  
+  $.log("开始邀请好友")
   for (let code of newShareCodes) {
     
     console.log(`去帮助好友${code['inviterNick']}`)
@@ -121,7 +121,7 @@ async function helpFriends() {
 }
 async function star() {
 await gettoken()
-
+$.log("开始入会任务")
 await dojoinMember(1000101562)
 await $.wait(5000)
 await dojoinMember(1000077335)
@@ -129,18 +129,30 @@ await $.wait(5000)
 await dojoinMember(1000008814)
 await $.wait(5000)
 await dojoinMember(1000014803)
+$.log("开始领取首页水滴")
 await dotree(1)
 await $.wait(5000)
 await dotree(2)
 await $.wait(5000)
 await dotree(3)
 await $.wait(5000)
+$.log("开始浏览会场")
 await doliulan(1)
 await $.wait(5000)
 await doliulan(2)
 await $.wait(5000)
 await doliulan(3)
-//await gettask()    
+//await gettask()  
+
+$.log("开始浏览会场")
+await doshop(1)
+await $.wait(5000)
+await doshop(2)
+await $.wait(5000)
+await doshop(3)
+await $.wait(5000)
+await doshop(4)
+$.log("开始浏览推荐食品商品")
 await doGoods(1)
 await $.wait(5000)
 await doGoods(2)
@@ -148,6 +160,7 @@ await $.wait(5000)
 await doGoods(3)
 await $.wait(5000)
 await doGoods(4)
+$.log("开始加购商品")
 await doadd(1)
 await $.wait(5000)
 await doadd(2)
@@ -155,6 +168,7 @@ await $.wait(5000)
 await doadd(3)
 await $.wait(5000)
 await doadd(4)
+$.log("开始游戏刷分")
 await playgame()
 
 }
@@ -341,12 +355,12 @@ headers: {
         });
     });
 }
-function doGoods(goodsNumId) {
+function doGoods(Goods) {
     return new Promise(async (resolve) => {
 let options = {
     url: `https://jinggengjcq-isv.isvjcloud.com/dm/front/foodRunning/complete/mission?open_id=&mix_nick=&bizExtString=&user_id=10299171`,
 
-    body: `{"jsonRpc":"2.0","params":{"commonParameter":{"appkey":"51B59BB805903DA4CE513D29EC448375","m":"POST","sign":"c80a9253cc1558cbf7f54639198ee751","timestamp":1625029740517,"userId":10299171},"admJson":{"goodsNumId":${goodsNumId},"missionType":"viewGoods","method":"/foodRunning/complete/mission","actId":"jd_food_running","buyerNick":"${nick}","pushWay":1,"userId":10299171}}}`,
+    body: `{"jsonRpc":"2.0","params":{"commonParameter":{"appkey":"51B59BB805903DA4CE513D29EC448375","m":"POST","sign":"c80a9253cc1558cbf7f54639198ee751","timestamp":1625029740517,"userId":10299171},"admJson":{"goodsNumId":${Goods},"missionType":"viewGoods","method":"/foodRunning/complete/mission","actId":"jd_food_running","buyerNick":"${nick}","pushWay":1,"userId":10299171}}}`,
 headers: {
 "Origin": "https://jinggengjcq-isv.isvjcloud.com",
 "Content-Type": "application/json; charset=UTF-8",
