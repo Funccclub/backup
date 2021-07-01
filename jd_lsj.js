@@ -2,11 +2,6 @@
 #京东零食街
 后续添加自动兑换功能 如入会失败 自行去入会
 入口 京东 频道 美食馆
-零食街自动兑换变量 
-export ljsdh="jdAward1" ##兑换5豆
-export ljsdh="jdAward2" ##兑换10豆
-export ljsdh="jdAward3" ##兑换100豆
-export ljsdh="jdAward4" ##兑换牛奶
 [task_local]
 0 11 * * *
 */
@@ -19,10 +14,6 @@ let useInfo = {};
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let newShareCodes = [];
-let ljsdh = '';
-if (process.env.ljsdh) {
-  ljsdh = process.env.ljsdh;
-}
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -137,8 +128,7 @@ await $.wait(5000)
 await doadd(4)
 $.log("开始游戏刷分")
 await playgame()
-$.log("开始兑换")
-await duihuan()
+
 }
 
 function gettoken() {
@@ -538,40 +528,7 @@ function showMsg() {
     resolve()
   })
 }
-function duihuan() {
-  return new Promise(async (resolve) => {
-    let options = {
-      url: `https://jinggengjcq-isv.isvjcloud.com/dm/front/foodRunning/exchangeGoods?open_id=&mix_nick=&bizExtString=&user_id=10299171`,
 
-      body: `{"jsonRpc":"2.0","params":{"commonParameter":{"appkey":"51B59BB805903DA4CE513D29EC448375","m":"POST","sign":"c80a9253cc1558cbf7f54639198ee751","timestamp":1625029740517,"userId":10299171},"admJson":{"awardId":${goodsNumId},"missionType":"viewGoods","method":"/foodRunning/exchangeGoods","actId":"${lsjdh}","buyerNick":"${nick}","pushWay":1,"userId":10299171}}}`,
-      headers: {
-        "Origin": "https://jinggengjcq-isv.isvjcloud.com",
-        "Content-Type": "application/json; charset=UTF-8",
-        "X-Requested-With": "XMLHttpRequest",
-        "Host": "jinggengjcq-isv.isvjcloud.com",
-        "Referer": "https://jinggengjcq-isv.isvjcloud.com/paoku/index.html?sid=75b413510cb227103e928769818a74ew&un_area=4_48201_54794_0",
-        "User-Agent": "jdapp;iPhone;9.5.2;14.3;6898c30638c55142969304c8e2167997fa59eb53;network/4g;ADID/F108E1B6-8E30-477C-BE54-87CF23435488;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone9,2;addressid/390536540;supportBestPay/0;appBuild/167650;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1",
-      }}
-    $.post(options, async (err, resp, data) => {
-      try {
-
-        const reust = JSON.parse(data)
-
-        if(reust.errorCode == 200){
-
-          $.log(`${reust.data.data.msg}`)
-        }else if(reust.errorCode == 500) {
-
-          $.log("今日已领取完毕,请明日再来！"+reust.errorMessage)
-        }
-      } catch (e) {
-        $.logErr(e, resp);
-      } finally {
-        resolve();
-      }
-    });
-  });
-}
 
 async function TotalBean() {
   return new Promise(async resolve => {
