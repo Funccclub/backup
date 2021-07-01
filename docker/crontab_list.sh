@@ -110,3 +110,4 @@
 0 0 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
 46 0,1 * * * node /scripts/jd_lsj.js >> /scripts/logs/jd_lsj.log 2>&1
 0 14 * * * node /scripts/jd_zooCaptain01.js >> /scripts/logs/jd_zooCaptain01.log 2>&1
+13 14 * * * node /scripts/jd_cfd_lottery.js >> /scripts/logs/jd_cfd_lottery.log 2>&1
