@@ -15,11 +15,15 @@ class Dwnc:
     ENV = 'release'
     IGNORE_URLS = ['/login']
 
-    def __init__(self, openid, sessid, account=None, ua=None):
+    def __init__(self, openid=None, sessid=None, account=None, ua=None):
         self.ua = ua if ua else 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.7(0x1800072d) NetType/WIFI Language/zh_CN'
         self.account = account if account else openid
         self.openid = openid
         self.sessid = sessid
+        if not self.openid:
+            raise Exception('请检查openid是否填写')
+        if not self.sessid:
+            raise Exception('请检查sessid是否填写')
         self.first = True
         self.is_help = False
         self._cache = {}
@@ -2892,7 +2896,7 @@ class Dwnc:
                     "order_refresh_max": 900,
                     "worker_gold": 15.5500000000001,
                     "video_gold": 10800
-                },
+                    },
                 "212": {
                     "level": 212,
                     "exp": 186000,
@@ -6474,7 +6478,7 @@ class Dwnc:
         if self.day_times['get_gold'] >= self.config.get('GET_GOLD_MAX'):
             self.can_gold = False
         self.coupon = data['user']['coupon']
-        self.account = data['user']['name']
+        self.account = data['user'].get('name', self.account)
         self.redpack = data['user']['redpack']
         self.orders = data['user']['orderList']
         self.warehouse = data['user']['cropList']
@@ -6508,7 +6512,11 @@ class Dwnc:
         res = self.get('/land/reap', {'landid': id, 'isVideo': self.get_is_video(can_zero=False) if red else 0})
         data = res.json()
         # print(res.json())
-        self.update_warehouse(data['crop'], crop_id)
+        if data.get('crop'):
+            self.update_warehouse(data['crop'], crop_id)
+        else:
+            print(res.json(), flush=True)
+
         self.random_wait(1, 3, message=f'收取{id}号田')
 
     def get_is_video(self, can_zero=True):
@@ -7078,7 +7086,7 @@ if __name__ == '__main__':
         print(f'DWNC_UA:{ua}', flush=True)
     if version:
         print(f'DWNC_VERSION:{version}', flush=True)
-    accounts = [parse(account) for account in accounts.split('&')]
+    accounts = [parse(account) for account in accounts.split('&') if account]
     accounts = [Dwnc(**account, ua=ua) for account in accounts]
 
     print(f'总计{len(accounts)}个账号', flush=True)
@@ -7112,12 +7120,12 @@ if __name__ == '__main__':
                     dwnc.check_helper_level()
                 for _ in range(random.randint(1, 3)):
                     dwnc.check_auction()
-
+    
                 # dwnc.first = False
                 last = dwnc
                 dwnc._cache = {}
                 print('-------------------------------------------------\n\n\n\n')
-
+    
             if datetime.datetime.now().hour >= 22:
                 break
         except Exception as e:
