@@ -111,5 +111,5 @@
 46 0,1 * * * node /scripts/jd_lsj.js >> /scripts/logs/jd_lsj.log 2>&1
 0 14 * * * node /scripts/jd_zooCaptain01.js >> /scripts/logs/jd_zooCaptain01.log 2>&1
 13 14 * * * node /scripts/jd_cfd_lottery.js >> /scripts/logs/jd_cfd_lottery.log 2>&1
-0 7 * * * python /scripts/jd_dwnc.py >> /scripts/logs/jd_dwnc.log 2>&1\
+0 7 * * * python3 /scripts/jd_dwnc.py >> /scripts/logs/jd_dwnc.log 2>&1\
 0 7 * * * node /scripts/jd_dwnc.js >> /scripts/logs/jd_dwnc.log 2>&1
