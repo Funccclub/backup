@@ -1,3 +1,4 @@
+CAN_NOTIFY = True
 import datetime
 import json
 import os
@@ -5,9 +6,16 @@ import random
 import time
 from collections import defaultdict
 from pprint import pprint
-
+try:
+    from notify import send
+except Exception as e:
+    CAN_NOTIFY = False
 import requests
 
+if CAN_NOTIFY:
+    print('启用通知成功', flush=True)
+else:
+    print('启用通知失败，缺少notify.py', flush=True)
 
 class Dwnc:
     GAME_ID = 'dwnc'
@@ -2896,7 +2904,7 @@ class Dwnc:
                     "order_refresh_max": 900,
                     "worker_gold": 15.5500000000001,
                     "video_gold": 10800
-                    },
+                },
                 "212": {
                     "level": 212,
                     "exp": 186000,
@@ -6459,6 +6467,8 @@ class Dwnc:
         res = self.get('/login')
         data = res.json()
         if 'user' not in data.keys():
+            if CAN_NOTIFY:
+                send('动物农场', content=f'{self.account}\t登录失效, 换设备打开小程序，原有登录信息会过期，请重新获取')
             raise Exception('登录失效, 换设备打开小程序，原有登录信息会过期，请重新获取')
         self.random_wait(5, 10, message='没啥用的等待～假装在加载界面😂')
         land_list = data['user']['landList']
@@ -6855,6 +6865,8 @@ class Dwnc:
             self.random_wait(1, 2, message=f'提现红包{self.cash / 100}元')
             res = self.get('/user/withdraw', {})
             pprint(res.json())
+            if CAN_NOTIFY:
+                send('动物农场', content=f'{self.account}\t提现红包{self.cash / 100}元')
             self.first = False
 
     def check_auction(self):
@@ -7120,12 +7132,12 @@ if __name__ == '__main__':
                     dwnc.check_helper_level()
                 for _ in range(random.randint(1, 3)):
                     dwnc.check_auction()
-    
+
                 # dwnc.first = False
                 last = dwnc
                 dwnc._cache = {}
                 print('-------------------------------------------------\n\n\n\n')
-    
+
             if datetime.datetime.now().hour >= 22:
                 break
         except Exception as e:
