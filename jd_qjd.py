@@ -12,7 +12,7 @@ TG频道 https://t.me/TopStyle2021
 
 #ck 优先读取【JDCookies.txt】 文件内的ck  再到 ENV的 变量 JD_COOKIE='ck1&ck2' 最后才到脚本内 cookies=ck
 cookies = ''
-qjd_zlzh = ['Your JD_User', '买买买', '东哥']
+qjd_zlzh = ['']
 
 # 建议调整一下的参数
 # UA 可自定义你的，注意格式
