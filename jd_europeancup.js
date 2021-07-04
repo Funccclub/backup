@@ -1,11 +1,11 @@
 /*
 更新地址：https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/jd_ddnc_farmpark.js
+号1默认给我助力 后续号给号1
+入口 https://lzdz-isv.isvjcloud.com/dingzhi/hisense/europeancup/activity/7431935?activityId=901100032442101&shareUuid=b7f58330cb0844b485afacbdea3c7bca&adsource=null&initHash=/home&shareuserid4minipg=8A+Mf3SBYE8spQtvzQ2VLE7oeVP9kq2pYSH90mYt4m3fwcJlClpxrfmVYaGKuquQkdK3rLBQpEQH9V4tdrrh0w==&shopid=undefined&lng=107.146945&lat=33.255267&sid=cad74d1c843bd47422ae20cadf6fe5aw&un_area=8_573_6627_52446)
 ============Quantumultx===============
 [task_local]
 #欧洲狂欢杯
-号1默认给我助力 后续号给号1
-入口 https://lzdz-isv.isvjcloud.com/dingzhi/hisense/europeancup/activity/7431935?activityId=901100032442101&shareUuid=b7f58330cb0844b485afacbdea3c7bca&adsource=null&initHash=/home&shareuserid4minipg=8A+Mf3SBYE8spQtvzQ2VLE7oeVP9kq2pYSH90mYt4m3fwcJlClpxrfmVYaGKuquQkdK3rLBQpEQH9V4tdrrh0w==&shopid=undefined&lng=107.146945&lat=33.255267&sid=cad74d1c843bd47422ae20cadf6fe5aw&un_area=8_573_6627_52446)
-55 59 9  * * ? https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/jd_europeancup.js, tag=欧洲狂欢杯, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+57 59 9  * * * https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/jd_europeancup.js, tag=欧洲狂欢杯, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
 const $ = new Env('狂欢欧洲杯');
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -31,7 +31,7 @@ if ($.isNode()) {
 const JD_API_HOST = `https://api.m.jd.com/client.action`;
 message = ""
 $.actid = "901100032442101"
-$.shareuuid = "efb9a544a3274c47a66d1e7a5d3e67ee" //俺的助力码 
+$.shareuuid = "efb9a544a3274c47a66d1e7a5d3e67ee" //wen总的助力码
     !(async () => {
         if (!cookiesArr[0]) {
             $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
@@ -68,6 +68,10 @@ $.shareuuid = "efb9a544a3274c47a66d1e7a5d3e67ee" //俺的助力码
                 await getUserInfo()
                 await getUid()
                 if ($.cando) {
+                    await exchange(cupExid) //兑换
+                    await exchange(cupExid) //兑换
+                    await exchange(cupExid) //兑换
+                    await exchange(cupExid) //兑换
                     await exchange(cupExid) //兑换
                     await getinfo()
                     taskList = $.taskList
@@ -234,6 +238,8 @@ function getMyPin() {
                         cookie = `${cookie} AUTH_C_USER=${$.pin};`
                         $.nickname = data.data.nickname
                         console.log(`欢迎回来~  ${$.nickname}`);
+                        $.lz_jdpin_token = resp['headers']['set-cookie'].filter(row => row.indexOf("lz_jdpin_token") !== -1)[0]
+                        console.log("lz_jdpin_token=" +$.lz_jdpin_token)
                     }
                 }
             } catch (e) {
@@ -275,7 +281,7 @@ function adlog() {
     })
 }
 
-// 获得用户信息  
+// 获得用户信息
 function getUserInfo() {
     return new Promise(resolve => {
         let body = `pin=${encodeURIComponent($.pin)}`
@@ -490,7 +496,7 @@ function taskUrl(url, body) {
             'Referer': `https://lzdz-isv.isvjcloud.com/dingzhi/hisense/europeancup/activity/7431935?activityId=901100032442101&shareUuid=b7f58330cb0844b485afacbdea3c7bca&adsource=null&initHash=/home&shareuserid4minipg=8A%2BMf3SBYE8spQtvzQ2VLE7oeVP9kq2pYSH90mYt4m3fwcJlClpxrfmVYaGKuquQkdK3rLBQpEQH9V4tdrrh0w%3D%3D&shopid=undefined&lng=107.146945&lat=33.255267&sid=cad74d1c843bd47422ae20cadf6fe5aw&un_area=8_573_6627_52446`,
             'user-agent': 'jdapp;android;10.0.4;11;2393039353533623-7383235613364343;network/wifi;model/Redmi K30;addressid/138549750;aid/290955c2782e1c44;oaid/b30cf82cacfa8972;osVer/30;appBuild/88641;partner/xiaomi001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; Redmi K30 Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045537 Mobile Safari/537.36',
             'content-type': 'application/x-www-form-urlencoded',
-            'Cookie': `${cookie} IsvToken=${$.IsvToken};AUTH_C_USER=${$.pin}`,
+            'Cookie': `${cookie} IsvToken=${$.IsvToken};AUTH_C_USER=${$.pin};${$.lz_jdpin_token}`,
         }
     }
 }
@@ -506,7 +512,7 @@ function taskPostUrl(url, body) {
             'Referer': `https://lzdz-isv.isvjcloud.com/dingzhi/hisense/europeancup/activity/7431935?activityId=901100032442101&shareUuid=b7f58330cb0844b485afacbdea3c7bca&adsource=null&initHash=/home&shareuserid4minipg=8A%2BMf3SBYE8spQtvzQ2VLE7oeVP9kq2pYSH90mYt4m3fwcJlClpxrfmVYaGKuquQkdK3rLBQpEQH9V4tdrrh0w%3D%3D&shopid=undefined&lng=107.146945&lat=33.255267&sid=cad74d1c843bd47422ae20cadf6fe5aw&un_area=8_573_6627_52446`,
                 'user-agent': 'jdapp;android;10.0.4;11;2393039353533623-7383235613364343;network/wifi;model/Redmi K30;addressid/138549750;aid/290955c2782e1c44;oaid/b30cf82cacfa8972;osVer/30;appBuild/88641;partner/xiaomi001;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 11; Redmi K30 Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045537 Mobile Safari/537.36',
             'content-type': 'application/x-www-form-urlencoded',
-            'Cookie': `${cookie} IsvToken=${$.IsvToken};`,
+            'Cookie': `${cookie} IsvToken=${$.IsvToken};${$.lz_jdpin_token}`,
         }
     }
 }
