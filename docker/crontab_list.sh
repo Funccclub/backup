@@ -115,5 +115,5 @@
 10 12 * * * node /scripts/jd_sendbean1.js >> /scripts/logs/jd_sendbean1.log 2>&1
 20 12 * * * node /scripts/jd_sendbean2.js >> /scripts/logs/jd_sendbean2.log 2>&1
 30 12 * * * node /scripts/jd_sendbean3.js >> /scripts/logs/jd_sendbean3.log 2>&1
-0 6 * * *  python3 /jd/scripts/jd_dwnc.py >> /scripts/logsjd_dwnc.log 2>&1
+0 6 * * *  python3 /jd/scripts/jd_dwnc.py >> /scripts/logs/jd_dwnc.log 2>&1
 5 0 * * *  python3 /jd/scripts/jd_qjd.py >> /scripts/logs/jd_qjd.log 2>&1
