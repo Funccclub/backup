@@ -111,8 +111,9 @@
 46 0,1 * * * node /scripts/jd_lsj.js >> /scripts/logs/jd_lsj.log 2>&1
 0 14 * * * node /scripts/jd_zooCaptain01.js >> /scripts/logs/jd_zooCaptain01.log 2>&1
 13 14 * * * node /scripts/jd_cfd_lottery.js >> /scripts/logs/jd_cfd_lottery.log 2>&1
-0 2 * * * python3 /scripts/jd_dwnc.py >> /scripts/logs/jd_dwnc.log 2>&1
 0 12 * * * node /scripts/jd_sendbean.js >> /scripts/logs/jd_sendbean.log 2>&1
 10 12 * * * node /scripts/jd_sendbean1.js >> /scripts/logs/jd_sendbean1.log 2>&1
 20 12 * * * node /scripts/jd_sendbean2.js >> /scripts/logs/jd_sendbean2.log 2>&1
 30 12 * * * node /scripts/jd_sendbean3.js >> /scripts/logs/jd_sendbean3.log 2>&1
+0 6 * * *  python3 /jd/scripts/jd_dwnc.py >> /jd/log/jd_dwnc.log 2>&1
+5 0 * * *  python3 /jd/scripts/jd_qjd.py >> /jd/log/jd_qjd.log 2>&1
