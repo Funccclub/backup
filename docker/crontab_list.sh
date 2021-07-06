@@ -119,6 +119,5 @@
 13 * * * * node /scripts/jd_joypark.js >> /scripts/logs/jd_joypark.log 2>&1
 28 */6 * * * node /scripts/jd_sign.js >> /scripts/logs/jd_sign.log 2>&1
 8 4,6 * * * node /scripts/jd_wish.js >> /scripts/logs/jd_wish.log 2>&1
-0 6 * * * python3 /jd/scripts/jd_dwnc.py >> /jd/log/jd_dwnc.log 2>&1
 5 0 * * * python3 /jd/scripts/jd_qjd.py >> /jd/log/jd_qjd.log 2>&1\
 1 6,7 * * * python3 /jd/scripts/jd_zqfl.py >> /jd/log/jd_zqfl.log 2>&1
