@@ -9,7 +9,7 @@ const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random()*4+10)}.${Math.ceil(Ma
 let cookiesArr = []
 let cookie = ''
 let inviters = []
-let helpNum = 7;//默认帮助前七个好友，其他自行修改
+let helpNum = 13;//默认帮助前七个好友，其他自行修改
 let inviter = {};
 
 !(async () => {
