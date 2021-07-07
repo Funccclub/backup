@@ -57,10 +57,7 @@ let prize =
       cookieExpire = false;
       lackCoin = false;
       await queryCouponsNotGroup()
-      if (cookieExpire) {
-        $.msg($.name, '提示：请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
-        continue;
-      }
+  
       await Promise.all([
         queryCouponCenter(),
         gateFloorById(),
