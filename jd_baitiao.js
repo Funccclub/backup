@@ -7,6 +7,9 @@
 */
 const $ = new Env('天天领白条券');
 const notify = $.isNode() ? require('./sendNotify') : '';
+const printDetail = false;        //是否显示出参详情
+let cookieExpire = false;
+let lackCoin = false;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [], cookie = '';
