@@ -6,6 +6,7 @@
 0 0,9 * * * https://raw.githubusercontent.com/Chibinl/JD-JX/main/jd_baiTiao.js, tag=京东白条, img-url=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/image/baitiao.png, enabled=true
 */
 const $ = new Env('天天领白条券');
+const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const printDetail = false;        //是否显示出参详情
 let cookieExpire = false;
@@ -19,6 +20,7 @@ if ($.isNode()) {
 } else {
   cookiesArr.push($.getdata('CookieJD'));
   cookiesArr.push($.getdata('CookiesJD'));
+    cookiesArr.push($.getdata('CookieJD2'));
 }
 const JR_API_HOST = 'https://jrmkt.jd.com/activity/newPageTake/takePrize';
 let prize =
