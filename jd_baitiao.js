@@ -44,11 +44,7 @@ let prize =
   ]
 
 !(async () => {
-  if (!cookiesArr[0]) {
-    $.msg($.name, '提示：请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
-    return;
-  }
-
+  
   for (let i = 0; i < prize.length; i++) {
     prize[i].body =`activityId=${prize[i].id}&eid=${randomWord(false,90).toUpperCase()}&fp=${randomWord(false,32).toLowerCase()}`
   }
