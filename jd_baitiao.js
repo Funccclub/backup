@@ -18,7 +18,7 @@ if ($.isNode()) {
   })
 } else {
   cookiesArr.push($.getdata('CookieJD'));
-  cookiesArr.push($.getdata('CookieJD2'));
+  cookiesArr.push($.getdata('CookiesJD'));
 }
 const JR_API_HOST = 'https://jrmkt.jd.com/activity/newPageTake/takePrize';
 let prize =
