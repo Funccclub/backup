@@ -6,16 +6,17 @@
 0 0,9 * * * https://raw.githubusercontent.com/Chibinl/JD-JX/main/jd_baiTiao.js, tag=京东白条, img-url=https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/image/baitiao.png, enabled=true
 */
 const $ = new Env('天天领白条券');
-const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const printDetail = false;        //是否显示出参详情
-let cookieExpire = false;
-let lackCoin = false;
-//直接用NobyDa的jd cookie
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-//IOS等用户直接用NobyDa的jd cookie
-let cookiesArr = [], cookie = '', message;
+let cookiesArr = [], cookie = '';
+if ($.isNode()) {
+  Object.keys(jdCookieNode).forEach((item) => {
+    cookiesArr.push(jdCookieNode[item])
+  })
+  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => { };
+} else {
+  cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 const JR_API_HOST = 'https://jrmkt.jd.com/activity/newPageTake/takePrize';
 let prize =
