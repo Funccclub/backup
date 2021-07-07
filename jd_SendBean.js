@@ -3,7 +3,7 @@
 搬运不知名大佬的脚本
 * cron 45 4 * * *
 * */
-const $ = new Env('送豆得豆');
+const $ = new Env('送豆得豆自动版');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
